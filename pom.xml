@@ -5,9 +5,9 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.seubot</groupId>
-    <artifactId>telegrambot</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>myfirstbot</groupId>
+    <artifactId>FuriaBot</artifactId>
+    <version>1.0</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -15,11 +15,20 @@
     </properties>
 
     <dependencies>
+
+
         <dependency>
             <groupId>org.telegram</groupId>
             <artifactId>telegrambots</artifactId>
             <version>6.5.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.18.0</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.telegram</groupId>
