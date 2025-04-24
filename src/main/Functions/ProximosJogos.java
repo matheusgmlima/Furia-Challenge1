@@ -14,6 +14,7 @@ public class ProximosJogos {
 
         try(Connection conn = Database.connect()){
             String sql = "SELECT * FROM jogos_furia WHERE data_jogo >= CURDATE() ORDER BY data_jogo";
+
             PreparedStatement st = conn.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
 

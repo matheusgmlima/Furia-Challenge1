@@ -8,6 +8,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import src.main.Exceptions.SendingMessageError;
 import src.main.Functions.ProximosJogos;
+import src.main.Functions.UltimosJogos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +60,11 @@ public class FuriaBot extends TelegramLongPollingBot {
                     throw new SendingMessageError("Error in conversation");
                 }
             }
+            else{
+                SendMessage message = new SendMessage();
+                message.setChatId(chatId);
+                message.setText("❌ Comando não reconhecido. Use /start para ver as opções.");
+            }
         }
 
         if(update.hasCallbackQuery()) {
@@ -70,14 +76,13 @@ public class FuriaBot extends TelegramLongPollingBot {
 
             switch (callbackData){
                 case "UltimosJogos":
-                    response.setText("ta funcionando");
+                    response.setText(UltimosJogos.listarUltimos5Jogos());
                     break;
                 case "ProximosJogos":
                     response.setText(ProximosJogos.listarProximosJogos());
                     break;
                 default:
-                    response.setText("Opção invalida");
-
+                    response.setText("Opção inválida!");
             }
             try {
                 execute(response);
