@@ -12,8 +12,8 @@ public class Main {
         try {
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
             botsApi.registerBot(new FuriaBot());
-            System.out.println("Bot iniciado com sucesso!");
-        } catch (BotCreationError | TelegramApiException e) {
+            System.out.println("Bot is running...");
+        } catch (TelegramApiException e) {
             throw new BotCreationError("Error on bot creation!");
         }
     }
