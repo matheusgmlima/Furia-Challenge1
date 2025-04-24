@@ -9,16 +9,18 @@ import java.sql.SQLException;
 
 public class ProximosJogos {
 
-    public static String listarProximosJogos(){
+    public static String listarProximosJogos() {
         StringBuilder resposta = new StringBuilder();
 
-        try(Connection conn = Database.connect()){
+        try (Connection conn = Database.connect()) {
             String sql = "SELECT * FROM jogos_furia WHERE data_jogo >= CURDATE() ORDER BY data_jogo";
-
             PreparedStatement st = conn.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
 
-            while(rs.next()) {
+            boolean encontrou = false;
+
+            while (rs.next()) {
+                encontrou = true;
                 resposta.append("- ")
                         .append(rs.getDate("data_jogo"))
                         .append(": vs ")
@@ -27,9 +29,16 @@ public class ProximosJogos {
                         .append(rs.getString("torneio"))
                         .append(")\n");
             }
-        } catch(SQLException e){
-            resposta.append("Erro ao listar proximos jogos\n");
+
+            if (!encontrou) {
+                resposta.append("⚠️ Nenhum jogo futuro encontrado.");
+            }
+
+        } catch (SQLException e) {
+            resposta.append("Erro ao listar próximos jogos\n");
         }
+
         return resposta.toString();
     }
+
 }
