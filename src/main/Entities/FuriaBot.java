@@ -7,6 +7,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import src.main.Exceptions.SendingMessageError;
+import src.main.Functions.ProximosJogos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +73,7 @@ public class FuriaBot extends TelegramLongPollingBot {
                     response.setText("ta funcionando");
                     break;
                 case "ProximosJogos":
-                    response.setText("ta funcionando");
+                    response.setText(ProximosJogos.listarProximosJogos());
                     break;
                 default:
                     response.setText("Opção invalida");
