@@ -1,4 +1,4 @@
-# 🐅 Furia-Challenge1
+# 🐅 Furia-Challenge1 -> Telegram Chatbot
 
 Chatbot interativo no Telegram que traz informações atualizadas sobre o time **FURIA** no cenário de **CS2 (Counter-Strike 2)**.
 
