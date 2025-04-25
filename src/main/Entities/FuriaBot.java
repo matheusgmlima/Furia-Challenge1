@@ -57,25 +57,29 @@ public class FuriaBot extends TelegramLongPollingBot {
             SendMessage response = new SendMessage();
             response.setChatId(String.valueOf(chatId));
 
+            InlineKeyboardMarkup markup = backToMainMenu();
+
             switch (callbackData){
                 case "UltimosJogos":
                     response.setText(UltimosJogos.listarUltimos5Jogos());
-
-                    InlineKeyboardMarkup markup = getInlineKeyboardMarkup();
-
-                    response.setReplyMarkup(markup);
+                    InlineKeyboardMarkup markup2 = getInlineKeyboardMarkup();
+                    response.setReplyMarkup(markup2);
                     break;
                 case "ProximosJogos":
                     response.setText(ProximosJogos.listarProximosJogos());
+                    response.setReplyMarkup(markup);
                     break;
                 case "LineAtual":
                     response.setText(LineAtual.listLineAtual());
+                    response.setReplyMarkup(markup);
                     break;
                 case "MaisJogos":
-                    response.setText(UltimosJogos.listarUltimosJogos()); // aqui mostra a lista completa
+                    response.setText(UltimosJogos.listarUltimosJogos());
+                    response.setReplyMarkup(markup);
                     break;
                 case "MelhoresCampeonatos":
                     response.setText(MelhoresCampeonatos.listMelhoresCampeonatos());
+                    response.setReplyMarkup(markup);
                     break;
                 case "VoltarMenu":
                     response = getSendMessage(chatId, "Escolha sua próxima opção, furioso!"); // Volta ao menu principal
@@ -109,6 +113,19 @@ public class FuriaBot extends TelegramLongPollingBot {
         markup.setKeyboard(newRows);
         return markup;
     }
+    private static InlineKeyboardMarkup backToMainMenu(){
+        InlineKeyboardMarkup markup = new InlineKeyboardMarkup();
+        List<List<InlineKeyboardButton>> newRows = new ArrayList<>();
+        List<InlineKeyboardButton> newRow = new ArrayList<>();
+
+        InlineKeyboardButton VoltarMenuBtn = new InlineKeyboardButton("Voltar ao menu?\uD83D\uDD01");
+        VoltarMenuBtn.setCallbackData("VoltarMenu");
+
+        newRow.add(VoltarMenuBtn);
+        newRows.add(newRow);
+        markup.setKeyboard(newRows);
+        return markup;
+    }
 
     private static SendMessage getSendMessage(long chatId, String text) {
         SendMessage message = new SendMessage();
@@ -119,6 +136,7 @@ public class FuriaBot extends TelegramLongPollingBot {
         List<List<InlineKeyboardButton>> rows = new ArrayList<>();
 
         List<InlineKeyboardButton> row = new ArrayList<>();
+        List<InlineKeyboardButton> row2 = new ArrayList<>();
         InlineKeyboardButton ultimosJogosBtn= new InlineKeyboardButton("Ultimos Jogos da FuriaCS🔫");
         ultimosJogosBtn.setCallbackData("UltimosJogos");
 
@@ -133,9 +151,10 @@ public class FuriaBot extends TelegramLongPollingBot {
 
         row.add(ultimosJogosBtn);
         row.add(proximosJogosBtn);
-        row.add(lineAtualBtn);
-        row.add(melhoresCampeonatosBtn);
+        row2.add(lineAtualBtn);
+        row2.add(melhoresCampeonatosBtn);
         rows.add(row);
+        rows.add(row2);
         inlineKeyboardMarkup.setKeyboard(rows);
 
         message.setReplyMarkup(inlineKeyboardMarkup);
