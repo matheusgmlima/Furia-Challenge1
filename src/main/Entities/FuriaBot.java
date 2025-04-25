@@ -12,6 +12,7 @@ import src.main.Functions.MelhoresCampeonatos;
 import src.main.Functions.ProximosJogos;
 import src.main.Functions.UltimosJogos;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,14 @@ public class FuriaBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return "7502628820:AAEjKUyrBMB4Kki1E1KVPDQJ6sdLz-nMlRQ";
+        File file = new File("C:\\Programming/FuriaBotToken.txt");
+        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            line = br.readLine();
+            return line;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
