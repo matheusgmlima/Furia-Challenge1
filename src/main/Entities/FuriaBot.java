@@ -22,6 +22,11 @@ public class FuriaBot extends TelegramLongPollingBot {
         return "@challengefuria_bot";
     }
 
+    @Override
+    public String getBotToken() {
+        return "7502628820:AAEjKUyrBMB4Kki1E1KVPDQJ6sdLz-nMlRQ";
+    }
+
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -43,6 +48,12 @@ public class FuriaBot extends TelegramLongPollingBot {
                 SendMessage message = new SendMessage();
                 message.setChatId(chatId);
                 message.setText("❌ Comando não reconhecido. Use /start para ver as opções.");
+                try{
+                    execute(message);
+                }
+                catch(TelegramApiException e){
+                    throw new SendingMessageError("Error in conversation");
+                }
             }
         }
 
