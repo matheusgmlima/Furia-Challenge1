@@ -1,8 +1,45 @@
-# Default ignored files
+# IntelliJ IDEA
+/.idea/
+/*.iml
+/out/
+
+# Logs
+*.log
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Builds e dependências
+/target/
+/build/
+/*.class
+
+# Configurações locais
+.env
+*.local
+*.properties
+*.db
+
+# Maven
+/logs/
+/mvnw
+/mvnw.cmd
+/.mvn/
+
+# Arquivos de credenciais
+bot_token.txt
+credentials.json
+secret.env
+
+# Banco de dados local
+*.sql  # Remova esta linha se quiser versionar o schema.sql e insert_data.sql
+
+# HTTP Requests
+/httpRequests/
+
+# IntelliJ específicos
 /shelf/
 /workspace.xml
-# Editor-based HTTP Client requests
-/httpRequests/
-# Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
