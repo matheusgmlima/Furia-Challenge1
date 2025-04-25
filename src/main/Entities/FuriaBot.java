@@ -7,6 +7,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import src.main.Exceptions.SendingMessageError;
+import src.main.Functions.LineAtual;
 import src.main.Functions.ProximosJogos;
 import src.main.Functions.UltimosJogos;
 
@@ -66,6 +67,9 @@ public class FuriaBot extends TelegramLongPollingBot {
                 case "ProximosJogos":
                     response.setText(ProximosJogos.listarProximosJogos());
                     break;
+                case "LineAtual":
+                    response.setText(LineAtual.getLineAtual());
+                    break;
                 case "MaisJogos":
                     response.setText(UltimosJogos.listarUltimosJogos()); // aqui mostra a lista completa
                     break;
@@ -117,8 +121,12 @@ public class FuriaBot extends TelegramLongPollingBot {
         InlineKeyboardButton proximosJogosBtn = new InlineKeyboardButton("Proximos Jogos da FuriaCS📅");
         proximosJogosBtn.setCallbackData("ProximosJogos");
 
+        InlineKeyboardButton lineAtualBtn = new InlineKeyboardButton("Line atual da Furia👤");
+        lineAtualBtn.setCallbackData("LineAtual");
+
         row.add(ultimosJogosBtn);
         row.add(proximosJogosBtn);
+        row.add(lineAtualBtn);
         rows.add(row);
         inlineKeyboardMarkup.setKeyboard(rows);
 

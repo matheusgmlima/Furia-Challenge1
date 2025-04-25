@@ -10,8 +10,6 @@ import java.time.format.DateTimeFormatter;
 
 public class UltimosJogos {
 
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
     public static String listarUltimosJogos(){
         StringBuilder resposta = new StringBuilder();
 
