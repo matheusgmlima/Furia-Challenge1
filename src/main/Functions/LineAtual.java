@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class LineAtual {
 
-    public static String getLineAtual(){
+    public static String listLineAtual(){
         StringBuilder resposta = new StringBuilder();
 
         try(Connection conn = Database.connect()){

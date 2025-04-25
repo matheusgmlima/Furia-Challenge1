@@ -8,6 +8,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import src.main.Exceptions.SendingMessageError;
 import src.main.Functions.LineAtual;
+import src.main.Functions.MelhoresCampeonatos;
 import src.main.Functions.ProximosJogos;
 import src.main.Functions.UltimosJogos;
 
@@ -68,10 +69,13 @@ public class FuriaBot extends TelegramLongPollingBot {
                     response.setText(ProximosJogos.listarProximosJogos());
                     break;
                 case "LineAtual":
-                    response.setText(LineAtual.getLineAtual());
+                    response.setText(LineAtual.listLineAtual());
                     break;
                 case "MaisJogos":
                     response.setText(UltimosJogos.listarUltimosJogos()); // aqui mostra a lista completa
+                    break;
+                case "MelhoresCampeonatos":
+                    response.setText(MelhoresCampeonatos.listMelhoresCampeonatos());
                     break;
                 case "VoltarMenu":
                     response = getSendMessage(chatId, "Escolha sua próxima opção, furioso!"); // Volta ao menu principal
@@ -124,9 +128,13 @@ public class FuriaBot extends TelegramLongPollingBot {
         InlineKeyboardButton lineAtualBtn = new InlineKeyboardButton("Line atual da Furia👤");
         lineAtualBtn.setCallbackData("LineAtual");
 
+        InlineKeyboardButton melhoresCampeonatosBtn = new InlineKeyboardButton("Melhores campeonatos🏆");
+        melhoresCampeonatosBtn.setCallbackData("MelhoresCampeonatos");
+
         row.add(ultimosJogosBtn);
         row.add(proximosJogosBtn);
         row.add(lineAtualBtn);
+        row.add(melhoresCampeonatosBtn);
         rows.add(row);
         inlineKeyboardMarkup.setKeyboard(rows);
 
